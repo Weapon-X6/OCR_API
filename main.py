@@ -24,9 +24,8 @@ async def extract_text(Images: List[UploadFile] = File(...)):
         print("Images uploaded: ", img.filename)
         temp_file = utils.save_file_to_server(
             img, path="images/", save_as=img.filename)
-        tasks.append(asyncio.create_task(ocr.read_image(temp_file)))
-        # text = await ocr.read_image(temp_file)
-        # response[img.filename] = text
+        tasks.append(asyncio.create_task(
+            ocr.read_image(temp_file)))
 
     text = await asyncio.gather(*tasks)
 
