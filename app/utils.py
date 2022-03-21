@@ -1,5 +1,6 @@
 import shutil
 import os
+from pathlib import Path
 
 
 def save_file_to_server(uploaded_file, path=".", save_as="default"):
@@ -10,3 +11,7 @@ def save_file_to_server(uploaded_file, path=".", save_as="default"):
         shutil.copyfileobj(uploaded_file.file, buffer)
 
     return temp_file
+
+
+def get_project_root() -> Path:
+    return Path(__file__).parent.parent
